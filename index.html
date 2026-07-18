@@ -1769,28 +1769,19 @@ document.querySelectorAll('.p-val[data-no-count]').forEach(el => {
 /* ── PALETTE TOGGLE: Manual override for time-of-day preview ── */
 (function palToggle() {
   var fakeHours = { auto: null, dawn: 6, day: 12, sunset: 17, night: 22 };
-  var btns = document.querySelectorAll('.pal-btn');
-  if (!btns.length) return;
 
   function setMode(mode) {
     window._palOverride = fakeHours[mode];
-    btns.forEach(function(b) {
+    document.querySelectorAll('.pal-btn').forEach(function(b) {
       b.classList.toggle('active', b.dataset.pal === mode);
     });
-    // Immediately apply the palette
-    var evt = new Event('_palApply');
-    window.dispatchEvent(evt);
+    if (typeof window._palApplyFn === 'function') window._palApplyFn();
   }
 
-  btns.forEach(function(b) {
-    b.addEventListener('click', function() { setMode(b.dataset.pal); });
-  });
-
-  // Listen for manual apply trigger from duskToDark
-  // (duskToDark's setInterval will also pick up the override automatically)
-  window.addEventListener('_palApply', function() {
-    // trigger by dispatching a fake interval tick
-    if (typeof window._palApplyFn === 'function') window._palApplyFn();
+  // Event delegation: works even though .pal-btn HTML comes after this <script> block
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.pal-btn') : null;
+    if (btn && btn.dataset && btn.dataset.pal) setMode(btn.dataset.pal);
   });
 })();
 </script>
