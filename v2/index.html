@@ -1306,17 +1306,53 @@ a:has(.fi-logo) { display:flex; align-items:center; }
       <!-- ── HOUSE ── -->
       <g class="map-hot" id="mapHouse"
          data-tip="THE HOUSE|4 bed &middot; 2.5 bath &middot; 200m&sup2; living|Raked ceilings &middot; Full north aspect">
-        <rect x="347" y="246" width="30" height="24" class="map-struct"
+        <!-- North deck — wraparound, faces the ranges -->
+        <rect x="343" y="236" width="44" height="9"
+              style="fill:#111F0E;stroke:#A8925A;stroke-width:.9;stroke-dasharray:3,2;opacity:.72;transition:stroke .2s"/>
+        <!-- Main house body -->
+        <rect x="347" y="245" width="36" height="28" class="map-struct"
               style="fill:#0C1209;stroke:#A8925A;stroke-width:2;transition:stroke .2s,filter .2s"/>
-        <rect x="343" y="270" width="38" height="8" class="map-struct"
-              style="fill:none;stroke:#A8925A;stroke-width:1;stroke-dasharray:3,2;opacity:.55;transition:stroke .2s"/>
+        <!-- Living / kitchen / dining (north) — sleeping wing (south) -->
+        <line x1="347" y1="257" x2="383" y2="257"
+              style="stroke:#A8925A;stroke-width:.75;opacity:.48"/>
+        <!-- Central corridor N–S -->
+        <line x1="365" y1="245" x2="365" y2="273"
+              style="stroke:#A8925A;stroke-width:.75;opacity:.48"/>
+        <!-- Bedroom subdivisions -->
+        <line x1="347" y1="264" x2="365" y2="264"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.34"/>
+        <line x1="365" y1="261" x2="383" y2="261"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.34"/>
+        <!-- South entry porch -->
+        <rect x="352" y="273" width="16" height="6"
+              style="fill:none;stroke:#A8925A;stroke-width:.8;stroke-dasharray:2,2;opacity:.55;transition:stroke .2s"/>
+        <!-- Door arc (south porch) -->
+        <path d="M 355,279 A 4,4 0 0 0 359,279"
+              style="fill:none;stroke:#A8925A;stroke-width:.75;opacity:.6"/>
+        <!-- North wall windows (sun-facing) -->
+        <line x1="350" y1="245" x2="354" y2="245"
+              style="stroke:#C4A15A;stroke-width:1.4;opacity:.58"/>
+        <line x1="358" y1="245" x2="362" y2="245"
+              style="stroke:#C4A15A;stroke-width:1.4;opacity:.58"/>
+        <line x1="368" y1="245" x2="372" y2="245"
+              style="stroke:#C4A15A;stroke-width:1.4;opacity:.58"/>
+        <line x1="376" y1="245" x2="380" y2="245"
+              style="stroke:#C4A15A;stroke-width:1.4;opacity:.58"/>
+        <!-- East wall windows -->
+        <line x1="383" y1="249" x2="383" y2="253"
+              style="stroke:#C4A15A;stroke-width:1.3;opacity:.42"/>
+        <line x1="383" y1="258" x2="383" y2="262"
+              style="stroke:#C4A15A;stroke-width:1.3;opacity:.42"/>
       </g>
 
       <!-- ── SHED ── -->
       <g class="map-hot" id="mapShed"
          data-tip="THE SHED|4-car &middot; 7 &times; 14m footprint|2.7m walls &middot; 30&deg; pitched roof">
-        <rect x="598" y="466" width="36" height="19" class="map-struct"
+        <rect x="357" y="320" width="26" height="14" class="map-struct"
               style="fill:#0C1209;stroke:#A8925A;stroke-width:1.5;opacity:.88;transition:stroke .2s,filter .2s"/>
+        <!-- Ridge line -->
+        <line x1="357" y1="327" x2="383" y2="327"
+              style="stroke:#A8925A;stroke-width:.5;stroke-dasharray:2,2;opacity:.38"/>
       </g>
 
       <!-- ── LABELS ── -->
@@ -1347,9 +1383,9 @@ a:has(.fi-logo) { display:flex; align-items:center; }
             style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7.5px;fill:#A8925A;letter-spacing:.13em;opacity:.6">530M ABOVE SEA LEVEL</text>
 
       <!-- Structure labels -->
-      <text x="382" y="262"
+      <text x="388" y="260"
             style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.12em;opacity:.65">THE HOUSE</text>
-      <text x="598" y="460"
+      <text x="357" y="316"
             style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.12em;opacity:.6">THE SHED</text>
       <text x="295" y="264"
             style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#8A9E76;letter-spacing:.1em;opacity:.6">TANKS</text>
