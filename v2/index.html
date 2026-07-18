@@ -1008,6 +1008,25 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   text-transform: uppercase;
   color: rgba(122,116,102,.5);
 }
+
+/* ── ENQUIRE PRICE & CLOSING ── */
+.enq-price {
+  font-family: var(--display);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: .06em;
+  margin-bottom: 2rem;
+}
+.enq-closing {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(.95rem, 1.5vw, 1.1rem);
+  font-weight: 300;
+  color: var(--muted-dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: .02em;
+}
 </style>
 </head>
 <body>
@@ -1076,7 +1095,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   <div class="label-row reveal"><span class="sect-label">The Particulars</span></div>
   <div class="p-grid">
     <div class="p-item reveal"><div class="p-val">4<span class="p-unit">bed</span></div><div class="p-lbl">Bedrooms</div></div>
-    <div class="p-item reveal d1"><div class="p-val">2<span class="p-unit">+</span></div><div class="p-lbl">Bathrooms + Powder Room</div></div>
+    <div class="p-item reveal d1"><div class="p-val">2.5</div><div class="p-lbl">Bathrooms inc. Powder Room</div></div>
     <div class="p-item reveal d2"><div class="p-val">4<span class="p-unit">car</span></div><div class="p-lbl">Garage &amp; Shed</div></div>
     <div class="p-item reveal d3"><div class="p-val">20<span class="p-unit">ac</span></div><div class="p-lbl">8 Hectares</div></div>
     <div class="p-item reveal"><div class="p-val">200<span class="p-unit">m²</span></div><div class="p-lbl">Living Area</div></div>
@@ -1103,20 +1122,32 @@ a:has(.fi-logo) { display:flex; align-items:center; }
         <span class="feat-label">Quartzite Mont Blanc benchtops &amp; Carrara marble bathrooms</span>
       </div>
       <div class="icon-feat">
-        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        <span class="feat-label">Antique brass Tradco hardware — every hinge, switch &amp; pull</span>
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg>
+        <span class="feat-label">Nectre oven in Carrara &amp; Nero Marquina marble fireplace surround</span>
       </div>
       <div class="icon-feat">
-        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg>
-        <span class="feat-label">Nectre baker&rsquo;s oven — wood fire cooking &amp; heating</span>
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        <span class="feat-label">Tradco antique brass — vintage switch plates, hinges &amp; cabinetry pulls</span>
+      </div>
+      <div class="icon-feat">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span class="feat-label">Custom handmade joinery — French doors, sash windows &amp; timber ember screens</span>
       </div>
       <div class="icon-feat">
         <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span class="feat-label">Oak engineered floors, 2.7m raked ceilings throughout</span>
       </div>
       <div class="icon-feat">
-        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a8 8 0 01-8-8c0-4.418 8-12 8-12s8 7.582 8 12a8 8 0 01-8 8z"/></svg>
-        <span class="feat-label">Perrin &amp; Rowe brushed brass tapware throughout</span>
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <span class="feat-label">Master suite — full-height WIR, ensuite &amp; north-facing valley outlook</span>
+      </div>
+      <div class="icon-feat">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 009 9 9 9 0 11-9-9z"/></svg>
+        <span class="feat-label">Blackbutt wrap-around deck &amp; 3m pergola — slow mornings, long lunches, valley views</span>
+      </div>
+      <div class="icon-feat">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <span class="feat-label">Laundry: Italian copper light, vintage tub on timber stand, Travertine tiles</span>
       </div>
     </div>
     <div class="brands-row reveal d3">
@@ -1145,7 +1176,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="eyebrow reveal">The Land</span>
     <h2 class="story-h reveal d1">Twenty acres that<br>earn their keep.</h2>
     <p class="story-p reveal d2">Set at 530 metres above sea level, on land formerly held by the Commonwealth Government as a radar installation, this property exists at this scale for one reason: it was never subdivided. Three hundred and sixty degrees of native bushland surrounds every boundary — completely untouched. Eight hectares, five cleared acres, fully fenced for animals or children.</p>
-    <p class="story-p reveal d3">Most acreage needs constant managing. This one doesn’t. The solar income effectively eliminates the power bill. Three buried tanks hold the property’s own water supply. What the list below describes isn’t a feature set — it’s a different relationship with the land.</p>
+    <p class="story-p reveal d3">Most acreage needs constant managing. This one doesn’t. What the list below describes isn’t a feature set — it’s a different relationship with the land.</p>
     <div class="icon-features reveal d3">
       <div class="icon-feat">
         <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -1153,19 +1184,23 @@ a:has(.fi-logo) { display:flex; align-items:center; }
       </div>
       <div class="icon-feat">
         <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a8 8 0 01-8-8c0-4.418 8-12 8-12s8 7.582 8 12a8 8 0 01-8 8z"/></svg>
-        <span class="feat-label">3 &times; 22,500L in-ground concrete water tanks</span>
+        <span class="feat-label">3 &times; 22,500L in-ground concrete tanks — includes bushfire reserve</span>
       </div>
       <div class="icon-feat">
         <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         <span class="feat-label">Triple-filtered water &amp; solar hot water system</span>
       </div>
       <div class="icon-feat">
-        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        <span class="feat-label">8ha — 5 cleared acres, fully fenced</span>
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span class="feat-label">200m private driveway — end of a quiet no-through road</span>
+      </div>
+      <div class="icon-feat">
+        <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22h20"/><path d="M6 18V9"/><path d="M10 18V9"/><path d="M14 18V9"/><path d="M18 18V9"/><path d="M2 9l10-7 10 7"/></svg>
+        <span class="feat-label">Hand-placed rock walls sourced entirely from the property</span>
       </div>
       <div class="icon-feat">
         <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.82a2 2 0 001.77 2.9c2.82 0 5.41-1.49 6.41-4.72C12 18 12 18 12 18"/><path d="M12 6c0-2 2-4 4-4s4 2 4 4-2 4-4 4"/><path d="M12 6c0-2-2-4-4-4S4 4 4 6s2 4 4 4"/></svg>
-        <span class="feat-label">10+ fruit trees &amp; established garden beds</span>
+        <span class="feat-label">10+ fruit trees — orange, lemon, mango, avocado, plum &amp; more</span>
       </div>
     </div>
   </div>
@@ -1396,12 +1431,12 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="eyebrow reveal" style="margin-bottom:1.5rem">The Setting</span>
     <h2 class="reveal d1">Fifteen minutes from Maleny.<br>The rest of the world<br>is closer than it looks.</h2>
     <p class="setting-body reveal d2">Maleny is fifteen minutes down the road and worth every minute of it. A genuine hinterland town — weekly farmers market, independent restaurants, galleries, and a hardware store that's been there for forty years. Not a tourist town. A real one that the locals actually use.</p>
-    <p class="setting-body reveal d3">Reesville itself sits in a protected pocket of the Sunshine Coast Hinterland, flanked by national park and bordered by properties of similar scale and intention. The Sunshine Coast is under an hour; Brisbane under ninety minutes. Private without being remote.</p>
+    <p class="setting-body reveal d3">Reesville itself sits in a protected pocket of the Sunshine Coast Hinterland, flanked by national park and bordered by properties of similar scale and intention. The house is positioned full north — rolling misty mornings and uninterrupted sunsets across the ranges, with wallabies in the paddock most evenings. The Sunshine Coast is under an hour; Brisbane under ninety minutes. Private without being remote.</p>
     <div class="distances">
       <div class="dist-item reveal"><span class="dist-place">Maleny Township</span><div class="dist-time">15 <span class="dist-unit">min</span></div></div>
       <div class="dist-item reveal d1"><span class="dist-place">Sunshine Coast Airport</span><div class="dist-time">50 <span class="dist-unit">min</span></div></div>
       <div class="dist-item reveal d2"><span class="dist-place">Brisbane CBD</span><div class="dist-time">90 <span class="dist-unit">min</span></div></div>
-      <div class="dist-item reveal d3"><span class="dist-place">Noosa Heads</span><div class="dist-time">55 <span class="dist-unit">min</span></div></div>
+      <div class="dist-item reveal d3"><span class="dist-place">Noosa Heads</span><div class="dist-time">35 <span class="dist-unit">min</span></div></div>
       <div class="dist-item reveal d3"><span class="dist-place">Elevation</span><div class="dist-time">530 <span class="dist-unit">m ASL</span></div></div>
     </div>
   </div>
@@ -1412,7 +1447,8 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   <div class="enquire-simple reveal">
     <h2>Arrange a<br>Private Viewing</h2>
     <p>The Pocket Land is offered by private expression of interest. Viewings are conducted personally — call or write directly to arrange yours.</p>
-    <div class="enq-agent-card reveal d1">
+    <p class="enq-price reveal d1">Expressions of interest from $4,000,000</p>
+    <div class="enq-agent-card reveal d2">
       <div class="enq-agent-role">Selling Agent</div>
       <div class="enq-agent-name">Justin Smith</div>
       <div class="enq-agent-agency">Ray White Rural</div>
@@ -1421,7 +1457,8 @@ a:has(.fi-logo) { display:flex; align-items:center; }
         <a href="mailto:justin@raywhite.com" class="enq-contact-link">justin@raywhite.com</a>
       </div>
     </div>
-    <a href="tel:+61XXXXXXXXX" class="btn-viewing reveal d2">Book a Private Viewing &nbsp;&rarr;</a>
+    <p class="enq-closing reveal d2">Designed to be lived in, shared and held for generations.</p>
+    <a href="tel:+61XXXXXXXXX" class="btn-viewing reveal d3">Book a Private Viewing &nbsp;&rarr;</a>
     <p class="enq-note reveal d3">Expressions of interest only &nbsp;&middot;&nbsp; Strictly private</p>
   </div>
 </section>
