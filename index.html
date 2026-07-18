@@ -886,6 +886,33 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   .property-map { padding: 4rem 1.25rem 3rem; }
   .pm-header { margin-bottom: 2rem; }
 }
+
+/* ── PALETTE TOGGLE ── */
+.pal-toggle {
+  position: fixed; bottom: 1.75rem; left: 2rem; z-index: 300;
+  display: flex; align-items: center; gap: .3rem;
+  opacity: .28; transition: opacity .3s;
+}
+.pal-toggle:hover { opacity: 1; }
+.pal-btn {
+  font-family: var(--body); font-size: .48rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--gold);
+  background: none; border: none; cursor: pointer;
+  padding: .35rem .5rem; opacity: .45; transition: opacity .2s, color .2s;
+  position: relative; white-space: nowrap;
+}
+.pal-btn::after {
+  content: ''; position: absolute; bottom: 0; left: .5rem; right: .5rem;
+  height: 1px; background: var(--gold); transform: scaleX(0);
+  transition: transform .2s; transform-origin: left;
+}
+.pal-btn.active { opacity: 1; }
+.pal-btn.active::after { transform: scaleX(1); }
+.pal-sep {
+  font-size: .4rem; color: var(--gold); opacity: .25; pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 600px) { .pal-toggle { display: none; } }
 </style>
 </head>
 <body>
@@ -1688,7 +1715,7 @@ document.querySelectorAll('.p-val[data-no-count]').forEach(el => {
     [24, '#080D06','#111809','#8A7848','#A08A55','#E5DFCF'],
   ];
   function apply() {
-    var h = aestHour();
+    var h = (window._palOverride != null) ? window._palOverride : aestHour();
     var a = W[0], b = W[W.length-1];
     for (var i = 0; i < W.length-1; i++) {
       if (h >= W[i][0] && h < W[i+1][0]) { a = W[i]; b = W[i+1]; break; }
@@ -1701,6 +1728,7 @@ document.querySelectorAll('.p-val[data-no-count]').forEach(el => {
     r.style.setProperty('--gold-light', lerp(a[4],b[4],t));
     r.style.setProperty('--parchment',  lerp(a[5],b[5],t));
   }
+  window._palApplyFn = apply;
   apply();
   setInterval(apply, 60000);
 })();
@@ -1737,6 +1765,47 @@ document.querySelectorAll('.p-val[data-no-count]').forEach(el => {
     });
   });
 })();
+
+/* ── PALETTE TOGGLE: Manual override for time-of-day preview ── */
+(function palToggle() {
+  var fakeHours = { auto: null, dawn: 6, day: 12, sunset: 17, night: 22 };
+  var btns = document.querySelectorAll('.pal-btn');
+  if (!btns.length) return;
+
+  function setMode(mode) {
+    window._palOverride = fakeHours[mode];
+    btns.forEach(function(b) {
+      b.classList.toggle('active', b.dataset.pal === mode);
+    });
+    // Immediately apply the palette
+    var evt = new Event('_palApply');
+    window.dispatchEvent(evt);
+  }
+
+  btns.forEach(function(b) {
+    b.addEventListener('click', function() { setMode(b.dataset.pal); });
+  });
+
+  // Listen for manual apply trigger from duskToDark
+  // (duskToDark's setInterval will also pick up the override automatically)
+  window.addEventListener('_palApply', function() {
+    // trigger by dispatching a fake interval tick
+    if (typeof window._palApplyFn === 'function') window._palApplyFn();
+  });
+})();
 </script>
+
+<!-- PALETTE TOGGLE -->
+<div class="pal-toggle" aria-label="Preview time-of-day palette">
+  <button class="pal-btn active" data-pal="auto"   title="Real Reesville time">AUTO</button>
+  <span class="pal-sep">·</span>
+  <button class="pal-btn"        data-pal="dawn"   title="5 am — Dawn">DAWN</button>
+  <span class="pal-sep">·</span>
+  <button class="pal-btn"        data-pal="day"    title="Midday">DAY</button>
+  <span class="pal-sep">·</span>
+  <button class="pal-btn"        data-pal="sunset" title="6 pm — Golden Hour">SUNSET</button>
+  <span class="pal-sep">·</span>
+  <button class="pal-btn"        data-pal="night"  title="10 pm — Night">NIGHT</button>
+</div>
 </body>
 </html>
