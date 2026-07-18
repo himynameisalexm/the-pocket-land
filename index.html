@@ -803,6 +803,89 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   .story-photo { clip-path:inset(0 0 0% 0) !important; }
 }
 
+
+/* ── PROPERTY MAP ── */
+.property-map {
+  background: var(--dark);
+  padding: clamp(5rem,9vw,8rem) 2.5rem clamp(4rem,7vw,6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pm-header {
+  text-align: center;
+  max-width: 640px;
+  margin-bottom: 3.5rem;
+}
+.pm-header .eyebrow { justify-content: center; }
+.pm-title {
+  font-family: var(--display);
+  font-size: clamp(2rem,4.5vw,3.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: .8rem;
+  text-wrap: balance;
+}
+.pm-sub {
+  font-size: clamp(.85rem,1.1vw,.95rem);
+  line-height: 1.8;
+  color: var(--muted-dark);
+  letter-spacing: .04em;
+  margin-top: .6rem;
+}
+.pm-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.pm-svg {
+  width: 100%;
+  min-width: 580px;
+  height: auto;
+  display: block;
+}
+.map-hot { cursor: pointer; }
+.map-hot:hover .map-struct {
+  stroke: var(--gold-light);
+  filter: drop-shadow(0 0 8px rgba(168,146,90,.55));
+}
+.map-hot:hover .map-tank {
+  fill: var(--gold-light);
+  stroke: var(--gold-light);
+}
+.pm-tooltip {
+  position: absolute;
+  background: var(--dark-mid);
+  border: 1px solid var(--gold);
+  color: var(--text-dark);
+  font-family: var(--body);
+  font-size: .75rem;
+  letter-spacing: .04em;
+  line-height: 1.7;
+  padding: .9rem 1.25rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s;
+  max-width: 230px;
+  z-index: 10;
+}
+.pm-tooltip.show { opacity: 1; }
+.pm-tooltip strong {
+  display: block;
+  font-family: var(--body);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-size: .58rem;
+  color: var(--gold);
+  margin-bottom: .45rem;
+}
+@media (max-width: 600px) {
+  .property-map { padding: 4rem 1.25rem 3rem; }
+  .pm-header { margin-bottom: 2rem; }
+}
 </style>
 </head>
 <body>
@@ -963,6 +1046,195 @@ a:has(.fi-logo) { display:flex; align-items:center; }
       <span class="detail-item">Fully fenced — animals &amp; children</span>
       <span class="detail-item">10+ established fruit trees &amp; raised garden beds</span>
     </div>
+  </div>
+</section>
+
+
+<!-- PROPERTY MAP -->
+<section id="map" class="property-map">
+  <div class="pm-header reveal">
+    <span class="eyebrow">The Land, Mapped</span>
+    <h2 class="pm-title">Eight hectares.</h2>
+    <p class="pm-sub">Five cleared. The rest, untouched since the Commonwealth left.</p>
+  </div>
+  <div class="pm-wrap" id="pmWrap">
+    <div class="pm-tooltip" id="pmTip" role="tooltip"></div>
+    <svg class="pm-svg" viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg"
+         aria-label="Illustrated map of 354 Corks Pocket Road, Reesville — 8 hectare property">
+
+      <defs>
+        <!-- Tree canopy dot pattern for bushland texture -->
+        <pattern id="treeCanopy" x="0" y="0" width="24" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="12" cy="9"  r="4.5" style="fill:#6B7C5B;opacity:.34"/>
+          <circle cx="5"  cy="17" r="3"   style="fill:#6B7C5B;opacity:.22"/>
+          <circle cx="19" cy="16" r="3.8" style="fill:#6B7C5B;opacity:.28"/>
+        </pattern>
+        <pattern id="treeUnder" x="8" y="6" width="18" height="16" patternUnits="userSpaceOnUse">
+          <circle cx="9" cy="7" r="2.8" style="fill:#8A9E76;opacity:.14"/>
+          <circle cx="3" cy="13" r="2" style="fill:#6B7C5B;opacity:.11"/>
+        </pattern>
+
+        <!-- Mask: block interior minus cleared paddock, for tree fill -->
+        <mask id="bushMask">
+          <rect width="900" height="640" fill="white"/>
+          <path d="M 318,194 C 256,208 232,275 250,350 C 268,425 352,456 427,422
+                   C 502,388 526,316 506,246 C 487,176 386,176 318,194 Z" fill="black"/>
+        </mask>
+
+        <!-- Clip to block boundary for tree pattern -->
+        <clipPath id="blockClip">
+          <path d="M 190,66 L 730,66 L 730,558 L 438,558 L 438,462 L 190,462 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- ── BUSHLAND BASE ── -->
+      <path d="M 190,66 L 730,66 L 730,558 L 438,558 L 438,462 L 190,462 Z"
+            style="fill:#6B7C5B;opacity:.07"/>
+
+      <!-- ── TREE TEXTURE (masked outside cleared area) ── -->
+      <rect x="190" y="66" width="540" height="492"
+            fill="url(#treeCanopy)" mask="url(#bushMask)" clip-path="url(#blockClip)"/>
+      <rect x="190" y="66" width="540" height="492"
+            fill="url(#treeUnder)"  mask="url(#bushMask)" clip-path="url(#blockClip)"/>
+
+      <!-- ── BLOCK BOUNDARY ── -->
+      <path d="M 190,66 L 730,66 L 730,558 L 438,558 L 438,462 L 190,462 Z"
+            style="fill:none;stroke:#A8925A;stroke-width:1.5;opacity:.65"/>
+
+      <!-- ── CLEARED PADDOCK ── -->
+      <path d="M 318,194 C 256,208 232,275 250,350 C 268,425 352,456 427,422
+               C 502,388 526,316 506,246 C 487,176 386,176 318,194 Z"
+            style="fill:#6B7C5B;opacity:.07;stroke:#8A9E76;stroke-width:.9;stroke-dasharray:5,4"/>
+
+      <!-- ── DRIVEWAY ── -->
+      <!-- Gate posts -->
+      <line x1="268" y1="458" x2="268" y2="476"
+            style="stroke:#A8925A;stroke-width:1.3;opacity:.6"/>
+      <line x1="256" y1="461" x2="256" y2="473"
+            style="stroke:#A8925A;stroke-width:1.3;opacity:.6"/>
+      <!-- Driveway curve -->
+      <path d="M 262,462 C 264,434 274,408 286,384
+               C 298,360 316,339 332,316
+               C 348,292 356,272 361,258"
+            style="fill:none;stroke:#A8925A;stroke-width:1.4;stroke-dasharray:8,5;opacity:.6"/>
+
+      <!-- ── GARDEN BEDS ── -->
+      <ellipse cx="362" cy="238" rx="28" ry="9"
+               style="fill:#6B7C5B;opacity:.38;stroke:#8A9E76;stroke-width:.6"/>
+      <ellipse cx="338" cy="262" rx="9" ry="22"
+               style="fill:#6B7C5B;opacity:.32;stroke:#8A9E76;stroke-width:.6"/>
+      <ellipse cx="390" cy="262" rx="9" ry="22"
+               style="fill:#6B7C5B;opacity:.32;stroke:#8A9E76;stroke-width:.6"/>
+      <ellipse cx="362" cy="288" rx="25" ry="8"
+               style="fill:#6B7C5B;opacity:.3;stroke:#8A9E76;stroke-width:.6"/>
+
+      <!-- ── WATER TANKS ── -->
+      <g class="map-hot" id="mapTanks"
+         data-tip="WATER SECURITY|3 &times; 22,500L in-ground concrete|Bushfire reserve capacity included">
+        <circle cx="325" cy="252" r="7" class="map-tank"
+                style="fill:#6B7C5B;stroke:#8A9E76;stroke-width:1.2;opacity:.9;transition:fill .2s,stroke .2s"/>
+        <circle cx="338" cy="264" r="7" class="map-tank"
+                style="fill:#6B7C5B;stroke:#8A9E76;stroke-width:1.2;opacity:.9;transition:fill .2s,stroke .2s"/>
+        <circle cx="325" cy="276" r="7" class="map-tank"
+                style="fill:#6B7C5B;stroke:#8A9E76;stroke-width:1.2;opacity:.9;transition:fill .2s,stroke .2s"/>
+      </g>
+
+      <!-- ── HOUSE ── -->
+      <g class="map-hot" id="mapHouse"
+         data-tip="THE HOUSE|4 bed &middot; 2.5 bath &middot; 200m&sup2; living|Raked ceilings &middot; Full north aspect">
+        <rect x="347" y="246" width="30" height="24" class="map-struct"
+              style="fill:#0C1209;stroke:#A8925A;stroke-width:2;transition:stroke .2s,filter .2s"/>
+        <rect x="343" y="270" width="38" height="8" class="map-struct"
+              style="fill:none;stroke:#A8925A;stroke-width:1;stroke-dasharray:3,2;opacity:.55;transition:stroke .2s"/>
+      </g>
+
+      <!-- ── SHED ── -->
+      <g class="map-hot" id="mapShed"
+         data-tip="THE SHED|4-car &middot; 7 &times; 14m footprint|2.7m walls &middot; 30&deg; pitched roof">
+        <rect x="598" y="466" width="36" height="19" class="map-struct"
+              style="fill:#0C1209;stroke:#A8925A;stroke-width:1.5;opacity:.88;transition:stroke .2s,filter .2s"/>
+      </g>
+
+      <!-- ── LABELS ── -->
+      <!-- Block size header -->
+      <text x="228" y="86"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7.5px;fill:#A8925A;letter-spacing:.18em;opacity:.5">8 HECTARES &nbsp;&middot;&nbsp; 19.7 ACRES</text>
+
+      <!-- Entry road -->
+      <text x="215" y="578"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:8px;fill:#A8925A;letter-spacing:.18em;opacity:.65">CORKS POCKET ROAD</text>
+
+      <!-- Driveway label (rotated) -->
+      <text x="284" y="415" transform="rotate(-58,284,415)"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7.5px;fill:#A8925A;letter-spacing:.14em;opacity:.6">200M DRIVEWAY</text>
+
+      <!-- Cleared area -->
+      <text x="384" y="375" text-anchor="middle"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:8px;fill:#8A9E76;letter-spacing:.15em;opacity:.7">5 ACRES CLEARED</text>
+
+      <!-- Bushland label -->
+      <text x="610" y="188" text-anchor="middle"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:8px;fill:#6B7C5B;letter-spacing:.14em;opacity:.8">360&deg; NATIVE BUSHLAND</text>
+      <text x="610" y="203" text-anchor="middle"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:6.5px;fill:#6B7C5B;letter-spacing:.1em;opacity:.5">Commonwealth Radar Reserve &middot; Never Subdivided</text>
+
+      <!-- Elevation -->
+      <text x="665" y="545" text-anchor="middle"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7.5px;fill:#A8925A;letter-spacing:.13em;opacity:.6">530M ABOVE SEA LEVEL</text>
+
+      <!-- Structure labels -->
+      <text x="382" y="262"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.12em;opacity:.65">THE HOUSE</text>
+      <text x="598" y="460"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.12em;opacity:.6">THE SHED</text>
+      <text x="295" y="264"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#8A9E76;letter-spacing:.1em;opacity:.6">TANKS</text>
+
+      <!-- Maleny distance -->
+      <line x1="190" y1="510" x2="162" y2="510"
+            style="stroke:#A8925A;stroke-width:.8;stroke-dasharray:3,3;opacity:.38"/>
+      <text x="160" y="507" text-anchor="end"
+            style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.1em;opacity:.45">MALENY 15KM</text>
+
+      <!-- ── COMPASS ROSE ── -->
+      <g transform="translate(820,105)">
+        <circle cx="0" cy="0" r="26"
+                style="fill:none;stroke:#A8925A;stroke-width:.7;opacity:.35"/>
+        <!-- N (prominent) -->
+        <polygon points="0,-27 -4,-18 4,-18"
+                 style="fill:#A8925A;opacity:.85"/>
+        <line x1="0" y1="-18" x2="0" y2="-2"
+              style="stroke:#A8925A;stroke-width:2;opacity:.85"/>
+        <!-- S -->
+        <line x1="0" y1="2" x2="0" y2="22"
+              style="stroke:#A8925A;stroke-width:1;opacity:.38"/>
+        <!-- E -->
+        <line x1="2" y1="0" x2="22" y2="0"
+              style="stroke:#A8925A;stroke-width:1;opacity:.38"/>
+        <!-- W -->
+        <line x1="-2" y1="0" x2="-22" y2="0"
+              style="stroke:#A8925A;stroke-width:1;opacity:.38"/>
+        <!-- Diagonal marks -->
+        <line x1="-16" y1="-16" x2="-11" y2="-11"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.25"/>
+        <line x1="16" y1="-16" x2="11" y2="-11"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.25"/>
+        <line x1="16" y1="16" x2="11" y2="11"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.25"/>
+        <line x1="-16" y1="16" x2="-11" y2="11"
+              style="stroke:#A8925A;stroke-width:.5;opacity:.25"/>
+        <!-- Labels -->
+        <text x="0" y="-32" text-anchor="middle"
+              style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:9px;fill:#A8925A;font-weight:600;letter-spacing:.05em;opacity:.9">N</text>
+        <text x="0" y="40" text-anchor="middle"
+              style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.05em;opacity:.42">S</text>
+        <text x="36" y="3" text-anchor="middle"
+              style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.05em;opacity:.42">E</text>
+        <text x="-36" y="3" text-anchor="middle"
+              style="font-family:'Gill Sans','Gill Sans MT',Optima,sans-serif;font-size:7px;fill:#A8925A;letter-spacing:.05em;opacity:.42">W</text>
+      </g>
+
+    </svg>
   </div>
 </section>
 
@@ -1392,6 +1664,79 @@ document.querySelectorAll('.p-val[data-no-count]').forEach(el => {
   }
 })();
 
+
+/* ── DUSK-TO-DARK: Colour shift tied to AEST (UTC+10, no DST) ── */
+(function duskToDark() {
+  function aestHour() {
+    var d = new Date();
+    return ((d.getUTCHours() * 60 + d.getUTCMinutes() + 600) % 1440) / 60;
+  }
+  function hx(n) { return ('0' + Math.round(Math.max(0, Math.min(255, n))).toString(16)).slice(-2); }
+  function lerp(a, b, t) {
+    var ar=parseInt(a.slice(1,3),16), ag=parseInt(a.slice(3,5),16), ab=parseInt(a.slice(5,7),16);
+    var br=parseInt(b.slice(1,3),16), bg=parseInt(b.slice(3,5),16), bb=parseInt(b.slice(5,7),16);
+    return '#'+hx(ar+(br-ar)*t)+hx(ag+(bg-ag)*t)+hx(ab+(bb-ab)*t);
+  }
+  // [hour, --dark, --dark-mid, --gold, --gold-light, --parchment]
+  var W = [
+    [ 0, '#080D06','#111809','#8A7848','#A08A55','#E5DFCF'],
+    [ 5, '#0F1A0B','#1C2716','#B89A55','#CEB070','#F0EBE0'],
+    [ 7, '#0C1209','#1A2215','#A8925A','#C4A96E','#EDE8DF'],
+    [16, '#0E130A','#1D2512','#C4A150','#D8B865','#F2EBD8'],
+    [19, '#090E07','#141A0E','#9A8450','#B09A62','#E8E2D2'],
+    [21, '#080D06','#111809','#8A7848','#A08A55','#E5DFCF'],
+    [24, '#080D06','#111809','#8A7848','#A08A55','#E5DFCF'],
+  ];
+  function apply() {
+    var h = aestHour();
+    var a = W[0], b = W[W.length-1];
+    for (var i = 0; i < W.length-1; i++) {
+      if (h >= W[i][0] && h < W[i+1][0]) { a = W[i]; b = W[i+1]; break; }
+    }
+    var t = (b[0]-a[0]) > 0 ? (h-a[0])/(b[0]-a[0]) : 0;
+    var r = document.documentElement;
+    r.style.setProperty('--dark',       lerp(a[1],b[1],t));
+    r.style.setProperty('--dark-mid',   lerp(a[2],b[2],t));
+    r.style.setProperty('--gold',       lerp(a[3],b[3],t));
+    r.style.setProperty('--gold-light', lerp(a[4],b[4],t));
+    r.style.setProperty('--parchment',  lerp(a[5],b[5],t));
+  }
+  apply();
+  setInterval(apply, 60000);
+})();
+
+/* ── PROPERTY MAP: Tooltip interaction ── */
+(function mapTooltips() {
+  var wrap = document.getElementById('pmWrap');
+  var tip  = document.getElementById('pmTip');
+  if (!wrap || !tip) return;
+
+  function moveTip(e) {
+    var rect = wrap.getBoundingClientRect();
+    var x = e.clientX - rect.left + 16;
+    var y = e.clientY - rect.top  - 20;
+    if (x + 240 > rect.width) x = e.clientX - rect.left - 250;
+    if (y < 0) y = 8;
+    tip.style.left = x + 'px';
+    tip.style.top  = y + 'px';
+  }
+
+  wrap.addEventListener('mousemove', function(e) {
+    if (tip.classList.contains('show')) moveTip(e);
+  });
+
+  document.querySelectorAll('.map-hot').forEach(function(el) {
+    el.addEventListener('mouseenter', function(e) {
+      var parts = el.dataset.tip.split('|');
+      tip.innerHTML = '<strong>' + parts[0] + '</strong>' + parts.slice(1).join('<br>');
+      tip.classList.add('show');
+      moveTip(e);
+    });
+    el.addEventListener('mouseleave', function() {
+      tip.classList.remove('show');
+    });
+  });
+})();
 </script>
 </body>
 </html>
