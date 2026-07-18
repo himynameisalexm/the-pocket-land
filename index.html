@@ -59,7 +59,7 @@ body {
   text-align:right; opacity:0; transform:translateY(-6px);
   transition:opacity .6s,transform .6s; pointer-events:none;
 }
-.corner-mark.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+.corner-mark.visible { opacity:0.55; transform:translateY(0); pointer-events:auto; }
 .cm-the {
   display:block; font-family:var(--display); font-weight:300;
   font-size:.65rem; letter-spacing:.3em; color:var(--gold); line-height:1.2; text-transform:uppercase;
@@ -79,6 +79,7 @@ body {
   color:rgba(200,188,168,.5); text-decoration:none; writing-mode:vertical-rl; transition:color .3s;
 }
 .site-nav a:hover { color:var(--gold); }
+.site-nav a.nav-active { color:var(--gold); opacity:1; }
 
 /* ── HERO ── */
 .hero {
@@ -515,6 +516,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   .enquire-grid { grid-template-columns:1fr; gap:3rem; }
   .f-row { grid-template-columns:1fr; }
   .site-nav { display:none; }
+  .corner-mark { display:none; }
   .gallery-hint { display:none; }
   .fixed-cta a { font-size:.48rem; padding:.8rem 1.25rem; }
   footer { grid-template-columns:1fr; }
@@ -778,19 +780,14 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   .f-row { grid-template-columns:1fr; }
   .f-note { font-size:.6rem; }
 
-  /* ── FIXED CTA (full-width bar) ── */
+  /* ── FIXED CTA (floating pill) ── */
   .fixed-cta {
-    bottom:0; right:0; left:0;
-    background:rgba(12,18,9,.97);
-    border-top:1px solid rgba(168,146,90,.2);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+    bottom:1.25rem; right:1.25rem; left:1.25rem;
   }
   .fixed-cta a {
     justify-content:center; width:100%;
-    padding:1.1rem 2rem;
-    padding-bottom:calc(1.1rem + env(safe-area-inset-bottom, 0px));
-    border:none; border-radius:0; font-size:.58rem; letter-spacing:.28em;
+    padding:1rem 1.5rem;
+    font-size:.52rem; letter-spacing:.28em;
   }
 
   /* ── FOOTER ── */
@@ -853,22 +850,6 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 </section>
 
 
-<!-- ADORE FEATURE -->
-<section class="adore-feature">
-  <div class="af-inner">
-    <div class="af-mag reveal">
-      <span class="af-pub">Adore</span>
-      <span class="af-sub">Magazine</span>
-      <span class="af-edition">Winter 2026 &mdash; Classic Homes Edition</span>
-    </div>
-    <div class="af-body reveal d1">
-      <h2 class="af-hed">One of four homes chosen for<br>the Winter 2026 Classic Homes Edition</h2>
-      <p class="af-copy">The Pocket Land was selected alongside three other homes nationally for Adore Magazine's Winter 2026 Classic Homes Edition. Photography by Mark Zeidler.</p>
-    </div>
-    <a href="https://www.adoremagazine.com/blog/new-winter-2026-classic-homes-edition" target="_blank" rel="noopener" class="af-link reveal d2">Read the feature</a>
-  </div>
-</section>
-
 <!-- OPENING -->
 <section class="opening">
   <div class="opening-grid">
@@ -889,9 +870,24 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     </div>
     <div class="opening-right">
       <p class="reveal d1">On Saturday mornings you walk the paddock before coffee. In winter the Nectre goes on after dinner and doesn't go off until Sunday. The drive to Maleny takes fifteen minutes and feels like a ritual — farmers market, breakfast, back before ten. This is what the weeks start to organise themselves around.</p>
-      <p class="reveal d2">The Pocket Land is a fully self-sufficient, architect-quality home on twenty acres of Sunshine Coast Hinterland. Construction finished in 2023 — owners who documented every material decision from the first concrete pour. The result is a property that doesn't require renovation, compromise, or imagination.</p>
-      <p class="reveal d3">It is ready as it stands. Everything was chosen for how it would age, not how it would photograph.</p>
+      <p class="reveal d2">A fully self-sufficient home on twenty acres of Sunshine Coast Hinterland, built to a personal brief and completed in 2023. Owners who documented every material decision from the first concrete pour. A property that doesn't require renovation, compromise, or apology.</p>
     </div>
+  </div>
+</section>
+
+<!-- ADORE FEATURE -->
+<section class="adore-feature">
+  <div class="af-inner">
+    <div class="af-mag reveal">
+      <span class="af-pub">Adore</span>
+      <span class="af-sub">Magazine</span>
+      <span class="af-edition">Winter 2026 &mdash; Classic Homes Edition</span>
+    </div>
+    <div class="af-body reveal d1">
+      <h2 class="af-hed">Selected for the Winter 2026<br>Classic Homes Edition</h2>
+      <p class="af-copy">One of four homes chosen nationally. Fourteen pages across the Winter 2026 issue. Photography by Mark Zeidler.</p>
+    </div>
+    <a href="https://www.adoremagazine.com/blog/new-winter-2026-classic-homes-edition" target="_blank" rel="noopener" class="af-link reveal d2">Read the feature</a>
   </div>
 </section>
 
@@ -902,7 +898,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <div class="p-item reveal"><div class="p-val">4<span class="p-unit">bed</span></div><div class="p-lbl">Bedrooms</div></div>
     <div class="p-item reveal d1"><div class="p-val">2<span class="p-unit">+</span></div><div class="p-lbl">Bathrooms + Powder Room</div></div>
     <div class="p-item reveal d2"><div class="p-val">4<span class="p-unit">car</span></div><div class="p-lbl">Garage &amp; Shed</div></div>
-    <div class="p-item reveal d3"><div class="p-val">20<span class="p-unit">ac</span></div><div class="p-lbl">Land (8 hectares)</div></div>
+    <div class="p-item reveal d3"><div class="p-val">20<span class="p-unit">ac</span></div><div class="p-lbl">8 Hectares</div></div>
     <div class="p-item reveal"><div class="p-val">200<span class="p-unit">m²</span></div><div class="p-lbl">Living Area</div></div>
     <div class="p-item reveal d1"><div class="p-val">283<span class="p-unit">m²</span></div><div class="p-lbl">Total inc. Alfresco</div></div>
     <div class="p-item reveal d2"><div class="p-val">14.6<span class="p-unit">kW</span></div><div class="p-lbl">Solar Generation</div></div>
@@ -920,7 +916,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="eyebrow reveal">The Craft</span>
     <h2 class="story-h reveal d1">Specified over a lifetime.<br>Built without compromise.</h2>
     <p class="story-p reveal d2">Every detail in The Pocket Land was chosen to age — not wear out. Quartzite Mont Blanc benchtops. Perrin &amp; Rowe bridge tap over a farmhouse sink. Sash windows with custom timber ember screens running the full length of the kitchen, opening to the paddock every morning.</p>
-    <p class="story-p reveal d3">Antique brass Tradco hardware on every hinge, door knob, light switch and cabinet pull. Carrara marble in the bathrooms. Nero Marquina in a checkerboard powder room that Adore Magazine called out by name. A Nectre baker's oven that heats the house. Oak engineered floors throughout.</p>
+    <p class="story-p reveal d3">It’s the kind of specification you recognise before you understand it — a coherence that runs from room to room without announcing itself. Chosen to age in place, not to impress at inspection.</p>
     <div class="detail-list reveal d3">
       <span class="detail-item">Quartzite Mont Blanc benchtops &amp; Carrara marble bathrooms</span>
       <span class="detail-item">Carrara &amp; Nero Marquina marble fireplace surround</span>
@@ -956,7 +952,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="eyebrow reveal">The Land</span>
     <h2 class="story-h reveal d1">Twenty acres that<br>earn their keep.</h2>
     <p class="story-p reveal d2">Set at 530 metres above sea level, on land formerly held by the Commonwealth Government as a radar installation, this property exists at this scale for one reason: it was never subdivided. Three hundred and sixty degrees of native bushland surrounds every boundary — completely untouched. Eight hectares, five cleared acres, fully fenced for animals or children.</p>
-    <p class="story-p reveal d3">Self-sufficient in ways most acreage isn't: 14.6kW of north-facing solar, 25.6kW of battery storage, three 22,500-litre concrete water tanks, Taylex wastewater and solar hot water. A kitchen garden grows from raised blackbutt beds, over ten established fruit trees, and a 4-car, 7×14m shed handles anything the land demands.</p>
+    <p class="story-p reveal d3">Most acreage needs constant managing. This one doesn’t. The solar income effectively eliminates the power bill. Three buried tanks hold the property’s own water supply. What the list below describes isn’t a feature set — it’s a different relationship with the land.</p>
     <div class="detail-list reveal d3">
       <span class="detail-item">14.6kW solar — 36 panels, full north aspect</span>
       <span class="detail-item">25.6kW battery storage — minimal to no power bill</span>
@@ -989,7 +985,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="eyebrow reveal">The Verandah</span>
     <h2 class="story-h reveal d1">Slow mornings.<br>Still evenings.</h2>
     <p class="story-p reveal d2">The wrap-around deck is Australian Eucalyptus pilularis — blackbutt — one of the most durable hardwoods on the continent. The covered alfresco brings the total living footprint to 283 square metres. French doors open the house to it from every main room.</p>
-    <p class="story-p reveal d3">Five-zone ducted air conditioning handles the indoors year-round. But the deck, the view to the hills, the smell of the land — that’s where the house actually lives. This, precisely, is what you came for.</p>
+    <p class="story-p reveal d3">Five-zone ducted air conditioning handles the indoors year-round. But the deck, the view to the hills, the smell of the land — that’s where the house actually lives.</p>
     <div class="detail-list reveal d3">
       <span class="detail-item">Blackbutt wrap-around deck &amp; pergola</span>
       <span class="detail-item">283m² total inc. alfresco &amp; verandah</span>
@@ -1033,7 +1029,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 <section class="setting">
   <div class="setting-inner">
     <span class="eyebrow reveal" style="margin-bottom:1.5rem">The Setting</span>
-    <h2 class="reveal d1">Maleny at your door.<br>The rest of the world<br>when you need it.</h2>
+    <h2 class="reveal d1">Fifteen minutes from Maleny.<br>The rest of the world<br>is closer than it looks.</h2>
     <p class="setting-body reveal d2">Maleny is fifteen minutes down the road and worth every minute of it. A genuine hinterland town — weekly farmers market, independent restaurants, galleries, and a hardware store that's been there for forty years. Not a tourist town. A real one that the locals actually use.</p>
     <p class="setting-body reveal d3">Reesville itself sits in a protected pocket of the Sunshine Coast Hinterland, flanked by national park and bordered by properties of similar scale and intention. The Sunshine Coast is under an hour; Brisbane under ninety minutes. Private without being remote.</p>
     <div class="distances">
@@ -1082,7 +1078,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
           <option value="flexible">Flexible</option>
         </select>
       </div>
-      <div class="f-field"><label for="fMsg">Message</label><textarea id="fMsg" name="message" placeholder="Please share anything you'd like us to know ahead of your visit, including whether you'd like to receive the private film."></textarea></div>
+      <div class="f-field"><label for="fMsg">Message</label><textarea id="fMsg" name="message" placeholder="Please share anything you'd like us to know ahead of your visit."></textarea></div>
       <div class="f-submit">
         <button type="submit" class="btn-submit">Request a Viewing</button>
         <span class="f-note">Your enquiry is treated in complete confidence. We respond within the business day.</span>
@@ -1267,6 +1263,26 @@ const heroObs2 = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15 });
 if (heroSection) heroObs2.observe(heroSection);
+
+
+// ═══════════════════════════════════════════════════════════════
+// NAV ACTIVE STATE
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  const navLinks = document.querySelectorAll('.site-nav a');
+  const targets  = [...navLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if (!targets.length) return;
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('nav-active'));
+        const link = [...navLinks].find(a => document.querySelector(a.getAttribute('href')) === e.target);
+        if (link) link.classList.add('nav-active');
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+  targets.forEach(t => navObs.observe(t));
+})();
 
 
 // ═══════════════════════════════════════════════════════════════
