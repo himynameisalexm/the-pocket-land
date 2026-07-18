@@ -692,21 +692,50 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 
 /* ── MOBILE COMPREHENSIVE ── */
 @media (max-width:600px) {
-  .hero-content { padding:0 1.5rem 3.5rem; }
-  .hero-the { font-size:1rem; }
-  .hero-address { letter-spacing:.18em; font-size:.45rem; }
 
+  /* ── HERO ── */
+  .hero-content { padding:0 1.5rem 5rem; }
+  .hero-the { font-size:1.05rem; letter-spacing:.28em; }
+  .hero-pocket { font-size:clamp(4rem,17vw,18rem); }
+  .hero-land { font-size:1rem; letter-spacing:.32em; }
+  .hero-address { font-size:.48rem; letter-spacing:.18em; }
+
+  /* ── ADORE FEATURE ── */
   .adore-feature { padding:3rem 1.5rem; }
+  .af-hed { font-size:1.2rem; line-height:1.35; }
+  .af-copy { font-size:1rem; line-height:1.75; }
+  .af-sub { font-size:.6rem; letter-spacing:.28em; }
 
+  /* ── OPENING ── */
   .opening { padding:3.5rem 1.5rem 2.5rem; }
-  .opening-right p { font-size:.9rem; }
+  .opening-left p.lede { font-size:1.4rem; line-height:1.5; }
+  .opening-right p { font-size:1rem; line-height:1.85; }
 
+  /* ── STORY SECTIONS ── */
   .story-text { padding:2.5rem 1.5rem; }
-  .pull-quote q { font-size:.92rem; }
+  .story-h { font-size:1.8rem; line-height:1.15; }
+  .story-p { font-size:1rem; line-height:1.85; max-width:none; }
+  .eyebrow { font-size:.68rem; letter-spacing:.28em; margin-bottom:1rem; }
+  .detail-item { font-size:.9rem; letter-spacing:.06em; line-height:1.65; }
+  .pull-quote q { font-size:.95rem; }
 
+  /* ── INTERLUDE ── */
   .interlude { height:75vmax; min-height:400px; }
-  .interlude-q { font-size:1.6rem; padding:0 1rem; }
+  .interlude-q { font-size:1.5rem; padding:0 1rem; line-height:1.5; }
+  .interlude-attr { font-size:.58rem; letter-spacing:.3em; }
 
+  /* ── BRAND ROW ── */
+  .brand-wordmark { font-size:.9rem; letter-spacing:.1em; }
+  .brands-label { font-size:.58rem; letter-spacing:.3em; }
+
+  /* ── PARTICULARS ── */
+  .particulars { padding:4rem 1.5rem; }
+  .sect-label { font-size:.65rem; letter-spacing:.3em; }
+  .p-grid { grid-template-columns:repeat(2,1fr); gap:2.25rem 1.5rem; }
+  .p-val { font-size:2rem; }
+  .p-lbl { font-size:.72rem; letter-spacing:.05em; }
+
+  /* ── GALLERY ── */
   .gallery { padding:3rem 0 3rem 1.5rem; }
   .gallery-strip { gap:.6rem; }
   .g-item:nth-child(1) { width:82vw; }
@@ -715,19 +744,35 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   .g-item:nth-child(4) { width:65vw; }
   .g-item:nth-child(5) { width:82vw; }
 
+  /* ── FILM ── */
   .film-section { min-height:auto; }
   .film-visual  { min-height:55vw; }
   .film-text    { padding:2.5rem 1.5rem; }
+  .film-text h2 { font-size:1.5rem; }
+  .film-text p  { font-size:1rem; line-height:1.8; }
 
-  .particulars { padding:4rem 1.5rem; }
-  .p-grid { grid-template-columns:repeat(2,1fr); gap:2rem 1.5rem; }
-
+  /* ── SETTING ── */
   .setting { padding:4rem 1.5rem; }
-  .distances { grid-template-columns:1fr 1fr; }
+  .setting h2 { font-size:1.9rem; line-height:1.2; }
+  .setting-body { font-size:1rem; line-height:1.85; }
+  .distances { grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .dist-place { font-size:.72rem; letter-spacing:.08em; }
+  .dist-time { font-size:1.5rem; }
+  .dist-unit { font-size:.7rem; }
 
+  /* ── ENQUIRE ── */
   .enquire { padding:4rem 1.5rem; }
+  .enq-left h2 { font-size:1.75rem; line-height:1.2; }
+  .enq-left p { font-size:1rem; line-height:1.85; }
+  .enq-included { font-size:.85rem; line-height:1.7; }
+  .enq-agent-name { font-size:1.1rem; }
+  .enq-agent-phone, .enq-agent-email { font-size:.9rem; }
+  .f-field label { font-size:.65rem; letter-spacing:.28em; }
+  .f-field input, .f-field textarea, .f-field select { font-size:16px; }
+  .f-row { grid-template-columns:1fr; }
+  .f-note { font-size:.6rem; }
 
-  /* Full-width sticky CTA on mobile */
+  /* ── FIXED CTA (full-width bar) ── */
   .fixed-cta {
     bottom:0; right:0; left:0;
     background:rgba(12,18,9,.97);
@@ -739,15 +784,13 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     justify-content:center; width:100%;
     padding:1.1rem 2rem;
     padding-bottom:calc(1.1rem + env(safe-area-inset-bottom, 0px));
-    border:none; border-radius:0; font-size:.52rem;
+    border:none; border-radius:0; font-size:.58rem; letter-spacing:.28em;
   }
 
-  /* Prevent iOS auto-zoom on inputs */
-  .f-field input, .f-field textarea, .f-field select { font-size:16px; }
-  .f-row { grid-template-columns:1fr; }
-
+  /* ── FOOTER ── */
   footer { padding:2.5rem 1.5rem; }
-  .footer-fine { text-align:left; }
+  .footer-name { font-size:.9rem; }
+  .footer-fine { text-align:left; font-size:.5rem; }
 }
 
 /* Touch: disable desktop-only interactions */
@@ -867,7 +910,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   </div>
   <div class="story-text">
     <span class="eyebrow reveal">The Craft</span>
-    <h2 class="story-h reveal d1">Built in three years.<br>Specified over a lifetime.</h2>
+    <h2 class="story-h reveal d1">Specified over a lifetime.<br>Built without compromise.</h2>
     <p class="story-p reveal d2">Every detail in The Pocket Land was chosen to age — not wear out. Quartzite Mont Blanc benchtops. Perrin &amp; Rowe bridge tap over a farmhouse sink. Sash windows with custom timber ember screens running the full length of the kitchen, opening to the paddock every morning.</p>
     <p class="story-p reveal d3">Antique brass Tradco hardware on every hinge, door knob, light switch and cabinet pull. Carrara marble in the bathrooms. Nero Marquina in a checkerboard powder room that Adore Magazine called out by name. A Nectre baker's oven that heats the house. Oak engineered floors throughout.</p>
     <div class="detail-list reveal d3">
@@ -904,8 +947,8 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   <div class="story-text">
     <span class="eyebrow reveal">The Land</span>
     <h2 class="story-h reveal d1">Twenty acres that<br>earn their keep.</h2>
-    <p class="story-p reveal d2">Eight hectares of Sunshine Coast Hinterland with five acres cleared, fully fenced for animals or children. Self-sufficient in ways most acreage isn't: 14.6kW of north-facing solar across 36 panels, 25.6kW of battery storage, and three 22,500-litre in-ground concrete water tanks.</p>
-    <p class="story-p reveal d3">A productive kitchen garden grows from raised blackbutt beds. Over ten established fruit trees: orange, lemon, lime, mandarin, mango, banana, plum, avocado, apple. The 200-metre driveway gives you thirty seconds of arrival that feels like its own ritual. A 4-car, 7×14m shed handles anything the land demands.</p>
+    <p class="story-p reveal d2">Set at 530 metres above sea level, on land formerly held by the Commonwealth Government as a radar installation, this property exists at this scale for one reason: it was never subdivided. Three hundred and sixty degrees of native bushland surrounds every boundary — completely untouched. Eight hectares, five cleared acres, fully fenced for animals or children.</p>
+    <p class="story-p reveal d3">Self-sufficient in ways most acreage isn't: 14.6kW of north-facing solar, 25.6kW of battery storage, three 22,500-litre concrete water tanks, Taylex wastewater and solar hot water. A kitchen garden grows from raised blackbutt beds, over ten established fruit trees, and a 4-car, 7×14m shed handles anything the land demands.</p>
     <div class="detail-list reveal d3">
       <span class="detail-item">14.6kW solar — 36 panels, full north aspect</span>
       <span class="detail-item">25.6kW battery storage — minimal to no power bill</span>
@@ -1007,6 +1050,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
       <div class="dist-item reveal d1"><span class="dist-place">Sunshine Coast Airport</span><div class="dist-time">50 <span class="dist-unit">min</span></div></div>
       <div class="dist-item reveal d2"><span class="dist-place">Brisbane CBD</span><div class="dist-time">90 <span class="dist-unit">min</span></div></div>
       <div class="dist-item reveal d3"><span class="dist-place">Noosa Heads</span><div class="dist-time">55 <span class="dist-unit">min</span></div></div>
+      <div class="dist-item reveal d3"><span class="dist-place">Elevation</span><div class="dist-time">530 <span class="dist-unit">m ASL</span></div></div>
     </div>
   </div>
 </section>
