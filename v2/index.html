@@ -137,10 +137,10 @@ body {
   opacity:0; animation:fadeUp 1.2s cubic-bezier(.2,.8,.3,1) 1.3s forwards;
 }
 .hero-tagline {
-  font-family:var(--display); font-style:italic; font-weight:400;
-  font-size:clamp(.9rem,2vw,1.6rem); color:var(--text-dark);
-  margin-top:2rem; max-width:40ch; line-height:1.5;
-  opacity:0; animation:fadeUp 1.2s cubic-bezier(.2,.8,.3,1) 1.5s forwards;
+  display:block; font-family:var(--display); font-style:italic; font-weight:300;
+  font-size:clamp(.95rem,1.8vw,1.4rem); color:rgba(255,255,255,.78);
+  letter-spacing:.04em; line-height:1; margin-bottom:1.1rem;
+  opacity:0; animation:fadeUp 1.2s cubic-bezier(.2,.8,.3,1) 1.4s forwards;
 }
 .scroll-cue {
   position:absolute; bottom:2.25rem; right:2.5rem; z-index:10;
@@ -1065,7 +1065,8 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <span class="hero-the">The</span>
     <span class="hero-pocket">Pocket</span>
     <span class="hero-land">Land</span>
-    <span class="hero-address">Reesville &middot; 15 minutes from Maleny</span>
+    <span class="hero-tagline">Where privacy has a view</span>
+      <span class="hero-address">Reesville &middot; 15 minutes from Maleny</span>
   </div>
   <div class="scroll-cue" aria-hidden="true">
     <span class="scroll-label">Discover</span>
@@ -1074,21 +1075,77 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 </section>
 
 
-<!-- ADORE FEATURE -->
-<section class="adore-feature">
-  <div class="af-inner">
-    <div class="af-mag reveal">
+<!-- ADORE / TRADCO ROTATING FEATURE -->
+<section class="adore-feature" id="featureRotator">
+  <!-- Slide 0: Adore -->
+  <div class="af-inner af-slide" data-slide="0">
+    <div class="af-mag">
       <span class="af-pub">Adore</span>
       <span class="af-sub">Magazine</span>
       <span class="af-edition">Winter 2026 &mdash; Classic Homes Edition</span>
     </div>
-    <div class="af-body reveal d1">
+    <div class="af-body">
       <h2 class="af-hed">Selected for the Winter 2026<br>Classic Homes Edition</h2>
       <p class="af-copy">One of four homes chosen nationally. Fourteen pages across the Winter 2026 issue. Photography by Mark Zeidler.</p>
     </div>
-    <a href="https://www.adoremagazine.com/blog/new-winter-2026-classic-homes-edition" target="_blank" rel="noopener" class="af-link reveal d2">Read the feature</a>
+    <a href="https://www.adoremagazine.com/blog/new-winter-2026-classic-homes-edition" target="_blank" rel="noopener" class="af-link">Read the feature &rarr;</a>
+  </div>
+  <!-- Slide 1: Tradco -->
+  <div class="af-inner af-slide" data-slide="1" style="display:none">
+    <div class="af-mag">
+      <span class="af-pub">Tradco</span>
+      <span class="af-sub">Hardware</span>
+      <span class="af-edition">Featured Campaign &mdash; The Pocket Land</span>
+    </div>
+    <div class="af-body">
+      <h2 class="af-hed">Featured in Tradco&rsquo;s<br>Campaign Collection</h2>
+      <p class="af-copy">Chosen to showcase their antique brass range in a real home. Every hinge, switch plate and pull across the property.</p>
+    </div>
+    <a href="https://www.tradco.com.au/projects/the-pocket-land/" target="_blank" rel="noopener" class="af-link">View the campaign &rarr;</a>
+  </div>
+  <!-- Dots -->
+  <div class="af-dots" aria-hidden="true">
+    <button class="af-dot af-dot--active" data-target="0"></button>
+    <button class="af-dot" data-target="1"></button>
   </div>
 </section>
+<style>
+.af-slide { transition: opacity .6s ease; }
+.af-slide.af-fade { opacity:0; }
+.af-dots {
+  display:flex; justify-content:center; gap:.5rem;
+  padding-top:2rem;
+}
+.af-dot {
+  width:6px; height:6px; border-radius:50%;
+  border:none; cursor:pointer;
+  background:rgba(168,146,90,.3); transition:background .3s;
+}
+.af-dot--active { background:rgba(168,146,90,.85); }
+</style>
+<script>
+(function(){
+  var slides = document.querySelectorAll('.af-slide');
+  var dots   = document.querySelectorAll('.af-dot');
+  var cur = 0, timer;
+  function show(n) {
+    slides[cur].style.display = 'none';
+    dots[cur].classList.remove('af-dot--active');
+    cur = n % slides.length;
+    slides[cur].style.display = '';
+    dots[cur].classList.add('af-dot--active');
+  }
+  function next() { show(cur + 1); }
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      clearInterval(timer);
+      show(+this.dataset.target);
+      timer = setInterval(next, 6000);
+    });
+  });
+  timer = setInterval(next, 6000);
+})();
+</script>
 
 <!-- PARTICULARS -->
 <section class="particulars" id="particulars">
@@ -1113,7 +1170,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   </div>
   <div class="story-text">
     <span class="eyebrow reveal">The Craft</span>
-    <h2 class="story-h reveal d1">Specified over a lifetime.<br>Built without compromise.</h2>
+    <h2 class="story-h reveal d1">New build.<br>Old soul.</h2>
     <p class="story-p reveal d2">Every detail in The Pocket Land was chosen to age — not wear out. Quartzite Mont Blanc benchtops. Perrin &amp; Rowe bridge tap over a farmhouse sink. Sash windows with custom timber ember screens running the full length of the kitchen, opening to the paddock every morning.</p>
     <p class="story-p reveal d3">Every material here was chosen to last rather than to impress — the kind of specification that looks better at five years than it did the day it was installed. Nothing that dates, nothing that jars. It holds up.</p>
     <div class="icon-features reveal d3">
@@ -1174,7 +1231,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
   </div>
   <div class="story-text">
     <span class="eyebrow reveal">The Land</span>
-    <h2 class="story-h reveal d1">Land that<br>earns its keep.</h2>
+    <h2 class="story-h reveal d1">No neighbours.<br>No upkeep.<br>No compromise.</h2>
     <p class="story-p reveal d2">Set at 530 metres above sea level, on land formerly held by the Commonwealth Government as a radar installation. Three hundred and sixty degrees of native bushland surrounds every boundary — completely untouched. Eight hectares, five cleared acres, fully fenced.</p>
     <p class="story-p reveal d3">Most acreage needs constant managing. This one doesn’t. What the list below describes isn’t a feature set — it’s a different relationship with the land.</p>
     <div class="icon-features reveal d3">
@@ -1437,7 +1494,7 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <div class="setting-split">
       <div class="setting-lead">
         <span class="eyebrow reveal" style="margin-bottom:1.5rem">The Setting</span>
-        <h2 class="reveal d1">Fifteen minutes from Maleny.<br>The rest of the world<br>is closer than it looks.</h2>
+        <h2 class="reveal d1">Reesville doesn’t come up often.<br>There’s a reason for that.</h2>
       </div>
       <div class="setting-detail">
         <p class="setting-body reveal d2">Maleny is fifteen minutes down the road and worth every minute of it. A genuine hinterland town — weekly farmers market, independent restaurants, galleries, and a hardware store that's been there for forty years. Not a tourist town. A real one that the locals actually use.</p>
@@ -1461,11 +1518,11 @@ a:has(.fi-logo) { display:flex; align-items:center; }
     <p>The Pocket Land is offered by private expression of interest. Viewings are conducted personally — call or write directly to arrange yours.</p>
     <div class="enq-agent-card reveal d2">
       <div class="enq-agent-role">Selling Agent</div>
-      <div class="enq-agent-name">Justin Smith</div>
-      <div class="enq-agent-agency">Ray White Rural</div>
+      <div class="enq-agent-name">James Mitchell</div>
+      <div class="enq-agent-agency">TOWN</div>
       <div class="enq-contact-links">
         <a href="tel:+61XXXXXXXXX" class="enq-contact-link">+61 XXX XXX XXX</a>
-        <a href="mailto:justin@raywhite.com" class="enq-contact-link">justin@raywhite.com</a>
+        <a href="mailto:agent@townproperty.com.au" class="enq-contact-link">agent@townproperty.com.au</a>
       </div>
     </div>
     <p class="enq-closing reveal d2">Designed to be lived in, shared and held for generations.</p>
