@@ -594,16 +594,28 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 .word-wrap.in { transform:none; }
 .word-wrap.in .word-inner { transform:translateY(0); }
 
-/* ── STORY IMAGE — clip reveal ── */
+/* ── STORY IMAGE — soft fade reveal ── */
 .story-photo, .film-photo {
-  clip-path:inset(0 0 100% 0);
-  transition:clip-path 1.1s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.25,.46,.45,.94);
+  opacity:0;
+  transform:scale(1.04);
+  transition:opacity 1.5s ease, transform 1.8s cubic-bezier(.25,.46,.45,.94);
+  transition-delay:.18s;
 }
 .story-img.img-in .story-photo,
 .film-visual.img-in .film-photo {
-  clip-path:inset(0 0 0% 0);
+  opacity:1;
+  transform:scale(1);
 }
-.story-img:hover .story-photo { transform:scale(1.04); }
+.story-img:hover .story-photo,
+.film-visual:hover .film-photo { transform:scale(1.04); transition-delay:0s; }
+
+/* ── GALLERY IMAGE fade reveal ── */
+.g-photo {
+  opacity:0;
+  transition:opacity 1.2s ease, transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.g-item.g-in .g-photo { opacity:1; }
+.g-item:hover .g-photo { transform:scale(1.05); }
 
 /* ── GALLERY 3D TILT ── */
 .g-item {
@@ -824,7 +836,8 @@ a:has(.fi-logo) { display:flex; align-items:center; }
 @media (hover:none) {
   .g-item, .g-photo { transform:none !important; transition:none; }
   .btn-submit, .fixed-cta a, .film-cta { transform:none !important; }
-  .story-photo { clip-path:inset(0 0 0% 0) !important; }
+  .story-photo, .film-photo { opacity:1 !important; transform:none !important; transition:none !important; }
+  .g-photo { opacity:1 !important; }
 }
 
 
@@ -1556,12 +1569,12 @@ a:has(.fi-logo) { display:flex; align-items:center; }
       <div class="enq-agent-agency">Licensed Real Estate Agent</div>
       <div class="enq-contact-links">
         <a href="tel:+61XXXXXXXXX" class="enq-contact-link">+61 XXX XXX XXX</a>
-        <a href="mailto:agent@townproperty.com.au" class="enq-contact-link">agent@townproperty.com.au</a>
+        <a href="mailto:james.mitchell@highlandshinterland.com.au" class="enq-contact-link">james.mitchell@highlandshinterland.com.au</a>
       </div>
     </div>
     <p class="enq-closing reveal d2">Designed to be lived in, shared and held for generations.</p>
     <a href="tel:+61XXXXXXXXX" class="btn-viewing reveal d3">Book a Private Viewing &nbsp;&rarr;</a>
-    <p class="enq-note reveal d3">Private sale &nbsp;&middot;&nbsp; Strictly private</p>
+    <p class="enq-note reveal d3">Private sale &nbsp;&middot;&nbsp; By appointment only</p>
   </div>
 </section>
 
@@ -1672,8 +1685,22 @@ const imgObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('img-in'); imgObs.unobserve(e.target); }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.story-img, .film-visual').forEach(el => imgObs.observe(el));
+
+const gObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      var delay = +e.target.dataset.gDelay || 0;
+      setTimeout(function(){ e.target.classList.add('g-in'); }, delay);
+      gObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.g-item').forEach(function(el, i) {
+  el.dataset.gDelay = i * 120;
+  gObs.observe(el);
+});
 
 
 // ═══════════════════════════════════════════════════════════════
